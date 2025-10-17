@@ -10,7 +10,18 @@ public abstract class Docente {
 
     public abstract double calcularPlusSalarial();
 
-    public Docente(int legajo, String nombre, String apellido, LocalDate fechaNacimiento, int edad, double salario) {
+    public Docente(int legajo, String nombre, String apellido, LocalDate fechaNacimiento, int edad, double salario) throws LegajoInvalidoException, EdadInvalidaException, SalarioInvalidoException {
+
+        if (legajo <= 0){
+            throw new LegajoInvalidoException("El legajo debe ser mayor a 0");
+        }
+        if (edad < 18 || edad > 100){
+            throw new EdadInvalidaException("La edad debe estar entre 18 y 100 años");
+        }
+        if (salario <= 0){
+            throw new SalarioInvalidoException("El salario debe ser mayor a 0");
+        }
+
         this.legajo = legajo;
         this.nombre = nombre;
         this.apellido = apellido;

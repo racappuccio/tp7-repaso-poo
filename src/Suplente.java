@@ -11,7 +11,7 @@ public class Suplente extends Docente {
         return getSalario();
     }
 
-    public Suplente(int legajo, String nombre, String apellido, LocalDate fechaNacimiento, int edad, double salario, String zonaRural){
+    public Suplente(int legajo, String nombre, String apellido, LocalDate fechaNacimiento, int edad, double salario, String zonaRural) throws EdadInvalidaException, LegajoInvalidoException, SalarioInvalidoException {
         super(legajo, nombre, apellido, fechaNacimiento, edad, salario);
         this.zonaRural = zonaRural;
     }

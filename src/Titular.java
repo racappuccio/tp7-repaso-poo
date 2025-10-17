@@ -11,8 +11,16 @@ public class Titular extends Docente {
         return getSalario();
     }
 
-    public Titular(int legajo, String nombre, String apellido, LocalDate fechaNacimiento, int edad, double salario, int antiguedad){
+    public Titular(int legajo, String nombre, String apellido, LocalDate fechaNacimiento, int edad, double salario, int antiguedad) throws LegajoInvalidoException, EdadInvalidaException, SalarioInvalidoException, AntiguedadInvalidaException {
         super(legajo, nombre, apellido, fechaNacimiento, edad, salario);
+
+        if (antiguedad < 0) {
+            throw new AntiguedadInvalidaException("La antiguedad no puede ser negativa");
+        }
+        if (antiguedad > edad - 18) {
+            throw new AntiguedadInvalidaException("La antiguedad no puede ser mayor a los años laborales posibles");
+        }
+
         this.antiguedad = antiguedad;
     }
 }
