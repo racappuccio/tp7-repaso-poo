@@ -3,10 +3,15 @@ package org.example;
 public class Titular extends Docente {
     private int antiguedad;
 
-    public Titular(int legajo, double salario, String fechaNacimiento, int edad, String apellido, String nombre, int antiguedad) {
+    public Titular(int legajo, double salario, String fechaNacimiento, int edad, String apellido, String nombre, int antiguedad) throws AntiguedadInvalidaException {
         super(legajo, salario, fechaNacimiento, edad, apellido, nombre);
-        this.antiguedad = antiguedad;
-    }
+        if (antiguedad < 0) {
+            throw new AntiguedadInvalidaException("La antiguedad no puede ser negativa");
+        } else if (antiguedad > edad - 18) {
+            throw new AntiguedadInvalidaException("La antiguedad no puede ser mayor a los años laborales posibles");
+        } else {
+            this.antiguedad = antiguedad;
+        }}
 
 
 

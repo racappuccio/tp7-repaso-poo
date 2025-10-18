@@ -11,13 +11,28 @@ public  abstract class Docente {
 
 
     public Docente(int legajo, double salario, String fechaNacimiento, int edad, String apellido, String nombre) {
-        this.legajo = legajo;
-        this.salario = salario;
-        this.fechaNacimiento = fechaNacimiento;
-        this.edad = edad;
-        this.apellido = apellido;
-        this.nombre = nombre;
+        if (legajo <= 0) {
+            throw new LegajoInvalidoException("El legajo debe ser mayor a 0");
+        } else if (edad >= 18 && edad <= 100) {
+            if (salario <= (double)0.0F) {
+                throw new SalarioInvalidoException("El salario debe ser mayor a 0");
+            } else {
+                this.legajo = legajo;
+                this.nombre = nombre;
+                this.apellido = apellido;
+                this.fechaNacimiento = fechaNacimiento;
+                this.edad = edad;
+                this.salario = salario;
+            }
+        } else {
+            throw new EdadInvalidaException("La edad debe estar entre 18 y 100 años");
+        }
     }
+
+
+
+
+
 
 
     public void mostrarInfo(){
